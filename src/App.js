@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import BarChart from "./component/BarChart";
+import Doughnut from "./component/Doughnut";
 const App = () => {
   return (
-    <div>
+    <>
       <BarChart />;
-    </div>
+      <div style={{ width: "500px" }}>
+        <Doughnut />;
+      </div>
+    </>
   );
 };
 
