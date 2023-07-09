@@ -1,16 +1,7 @@
-import { Bar } from "react-chartjs-2";
-import { useEffect, useState } from "react";
-import React from "react";
+import {Bar} from "react-chartjs-2";
+import React, {useEffect, useState} from "react";
 // this is the library of the chart.js need to import
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip,} from "chart.js";
 
 // this is plugin of chart.js without defination of globally chart.js show the error
 ChartJS.register(
@@ -21,7 +12,9 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
 const options = {
+
   indexAxis: "x",
   elements: {
     bar: {
@@ -36,7 +29,7 @@ const options = {
       bodyColor: "#000",
       borderColor: "#000",
       borderWidth: 1,
-      padding: 10,
+      padding:10,
       titleColor: "#000",
       titleFont: "bold",
       titleFontSize: 30,
@@ -49,6 +42,26 @@ const options = {
     title: {
       display: true,
       text: "Chart.js Horizontal Bar Chart Sample Practice",
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+    },
+    y: {
+      grid: {
+        color: "rgba(255,255,255,0.66)",
+      },
+    },
+  },
+  layout: {
+    margin:{
+      top:10,
+    },
+    padding: {
+      top: 10,
     },
   },
 };
@@ -101,15 +114,14 @@ const BarChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       const url =
-        "https://jsonplaceholder.typicode.com/comments?_start=15&_end=35";
+        "https://jsonplaceholder.typicode.com/comments?_start=25&_end=35";
       const dataSet1 = [];
       const dataSet2 = [];
       const label = [];
       await fetch(url)
         .then((data) => {
           console.log("Api data", data);
-          const res = data.json();
-          return res;
+          return data.json();
         })
         .then((res) => {
           console.log("resss", res);
@@ -156,10 +168,10 @@ const BarChart = () => {
           console.log("error", e);
         });
     };
-    fetchData();
+    fetchData().then(r => console.log("r", r));
   }, []);
   return (
-    <div>
+    <div className='bg-gradient-to-t from-stone-50 to-rose-100'>
       <Bar data={data} options={options} />
     </div>
   );
